@@ -3,6 +3,10 @@
 #include <stdexcept>  // For exceptions
 #include "singlyLinkedList.h"
 
+
+// Constructor for Node: initializes the node's data with the given value and next pointer to nullptr
+Node::Node(int value) : data(value), next(nullptr) { }
+
 // Constructor for SinglyLinkedList: initializes head and tail to nullptr and size to 0
 SinglyLinkedList::SinglyLinkedList() : head(nullptr), tail(nullptr), size(0) { }
 
@@ -18,9 +22,6 @@ SinglyLinkedList::~SinglyLinkedList() {
     tail = nullptr;  // Set tail to nullptr as well
     size = 0;        // Reset size to 0
 }
-
-// Constructor for Node: initializes the node's data with the given value and next pointer to nullptr
-Node::Node(int value) : data(value), next(nullptr) { }
 
 // push_front: Inserts an element at the beginning of the list
 void SinglyLinkedList::push_front(int value) {
@@ -53,16 +54,16 @@ void SinglyLinkedList::push_back(int value) {
 // insert: Inserts an element at the specified index (0-indexed)
 // Throws an exception if the index is out of bounds.
 void SinglyLinkedList::insert(size_t index, int value) {
-    if (index > this->size | index < 0) {    // Check if index is greater than size or negative
+    if (index > this->size | index < 0) {  // Check if index is greater than size or negative
         throw std::out_of_range("Index is out of bounds");  // Throw exception if index is invalid
     }
 
     Node* previousNode = nullptr;   // Pointer to keep track of the node before the insertion point
-    Node* nextNode = this->head;      // Pointer to keep track of the node at the insertion point
+    Node* nextNode = this->head;    // Pointer to keep track of the node at the insertion point
 
     size_t i = 0;
-    while (i < index) {             // Traverse the list until reaching the specified index
-        if (i == 0) {             // Special handling for the first iteration
+    while (i < index) {                 // Traverse the list until reaching the specified index
+        if (i == 0) {                   // Special handling for the first iteration
             previousNode = this->head;  // Set previousNode to head
             nextNode = nextNode->next;  // Move nextNode to the next element
         } else {
@@ -136,7 +137,7 @@ void SinglyLinkedList::pop_back() {
 // remove: Removes the element at the specified index (0-indexed)
 // Throws an exception if the index is invalid.
 void SinglyLinkedList::remove(size_t index) {
-    if (index >= this->size | index < 0) {    // Check if index is out of bounds (greater than or equal to size, or negative)
+    if (index >= this->size) {    // Check if index is out of bounds (greater than or equal to size, or negative)
         throw std::out_of_range("Index is out of bounds");
     }
 
@@ -221,56 +222,56 @@ void SinglyLinkedList::print() const {
     std::cout << "\n";
 }
 
-int main() {
-    SinglyLinkedList list;
+// int main() {
+//     SinglyLinkedList list;
 
-    std::cout << "Initial list (should be empty): ";
-    list.print();
+//     std::cout << "Initial list (should be empty): ";
+//     list.print();
 
-    list.push_front(10);
-    list.print();  // Expected: 10
-    list.pop_back();
+//     list.push_front(10);
+//     list.print();  // Expected: 10
+//     list.pop_back();
 
-    // Test push_front
-    std::cout << "\nTesting push_front:" << std::endl;
-    list.push_front(10);
-    list.print();  // Expected: 10
-    list.push_front(20);
-    list.print();  // Expected: 20 -> 10
-    list.push_front(30);
-    list.print();  // ExpWected: 30 -> 20 -> 10
+//     // Test push_front
+//     std::cout << "\nTesting push_front:" << std::endl;
+//     list.push_front(10);
+//     list.print();  // Expected: 10
+//     list.push_front(20);
+//     list.print();  // Expected: 20 -> 10
+//     list.push_front(30);
+//     list.print();  // ExpWected: 30 -> 20 -> 10
 
-    // Test push_back
-    std::cout << "\nTesting push_back:" << std::endl;
-    list.push_back(40);
-    list.print();  // Expected: 30 -> 20 -> 10 -> 40
-    list.push_back(50);
-    list.print();  // Expected: 30 -> 20 -> 10 -> 40 -> 50
+//     // Test push_back
+//     std::cout << "\nTesting push_back:" << std::endl;
+//     list.push_back(40);
+//     list.print();  // Expected: 30 -> 20 -> 10 -> 40
+//     list.push_back(50);
+//     list.print();  // Expected: 30 -> 20 -> 10 -> 40 -> 50
 
-    // Test insert (inserting 25 at index 3)
-    std::cout << "\nTesting insert (insert 25 at index 3):" << std::endl;
-    list.insert(3, 25);
-    list.print();  // Expected: 30 -> 20 -> 10 -> 25 -> 40 -> 50
+//     // Test insert (inserting 25 at index 3)
+//     std::cout << "\nTesting insert (insert 25 at index 3):" << std::endl;
+//     list.insert(3, 25);
+//     list.print();  // Expected: 30 -> 20 -> 10 -> 25 -> 40 -> 50
 
-    // Test remove (removing element at index 1)
-    std::cout << "\nTesting remove (remove element at index 1):" << std::endl;
-    list.remove(1);
-    list.print();  // Expected: 30 -> 10 -> 25 -> 40 -> 50
+//     // Test remove (removing element at index 1)
+//     std::cout << "\nTesting remove (remove element at index 1):" << std::endl;
+//     list.remove(1);
+//     list.print();  // Expected: 30 -> 10 -> 25 -> 40 -> 50
 
-    // Test pop_front
-    std::cout << "\nTesting pop_front:" << std::endl;
-    list.pop_front();
-    list.print();  // Expected: 10 -> 25 -> 40 -> 50
+//     // Test pop_front
+//     std::cout << "\nTesting pop_front:" << std::endl;
+//     list.pop_front();
+//     list.print();  // Expected: 10 -> 25 -> 40 -> 50
 
-    // Test pop_back
-    std::cout << "\nTesting pop_back:" << std::endl;
-    list.pop_back();
-    list.print();  // Expected: 10 -> 25 -> 40
+//     // Test pop_back
+//     std::cout << "\nTesting pop_back:" << std::endl;
+//     list.pop_back();
+//     list.print();  // Expected: 10 -> 25 -> 40
 
-    // Test clear
-    std::cout << "\nTesting clear:" << std::endl;
-    list.clear();
-    list.print();  // Expected: (empty output)
+//     // Test clear
+//     std::cout << "\nTesting clear:" << std::endl;
+//     list.clear();
+//     list.print();  // Expected: (empty output)
 
-    return 0;
-}
+//     return 0;
+// }
