@@ -32,7 +32,7 @@ void DynamicArray::push_back(int value) {
 
 // Function to remove the last element
 void DynamicArray::pop_back() {
-    if (size == 0) {
+    if (this->size == 0) {
         throw std::out_of_range("Array is empty");
     }
     resize(this->size--); // Resizes to a new capacity at the same time that updates the size (using size--)
@@ -69,7 +69,7 @@ void DynamicArray::erase(size_t index) {
 
 // Access to elements by index (no limit check)
 int& DynamicArray::operator[](size_t index) {
-    if(index >= size) {
+    if(index >= this->size) {
         throw std::out_of_range("Index out of range");
     }
     return this->data[index];

@@ -145,7 +145,7 @@ void testSinglyLinkedList() {
 
 int main() {
     std::cout << "----------Testing Singly Linked List--------------\n" << std::endl;
-    testCircularDoublyLinkedList();
+    testSinglyLinkedList();
     std::cout << "\n++++++++++++++++++++++++++++++++++\n" << std::endl;
     std::cout << "----------Testing Circular Doubly Linked List--------------\n" << std::endl;
     testCircularDoublyLinkedList();
