@@ -11,16 +11,16 @@ CircularDoublyLinkedList::CircularDoublyLinkedList() : head(nullptr), size(0) { 
 
 // Destructor: Releases all allocated nodes
 CircularDoublyLinkedList::~CircularDoublyLinkedList() {
-    if (head != nullptr) {
-        DNode* current = head;
+    if (this->head != nullptr) {
+        DNode* current = this->head;
         do {
             DNode* nextNode = current->next;
             delete current;
             current = nextNode;
-        } while (current != head);
+        } while (current != this->head);
     }
-    head = nullptr;
-    size = 0;
+    this->head = nullptr;
+    this->size = 0;
 };
 
 // push_front: Inserts an element at the beginning of the circular doubly linked list

@@ -12,15 +12,15 @@ SinglyLinkedList::SinglyLinkedList() : head(nullptr), tail(nullptr), size(0) { }
 
 // Destructor: Releases all allocated nodes in the list
 SinglyLinkedList::~SinglyLinkedList() {
-    Node* current = head;                // Start with the head node
+    Node* current = this->head;          // Start with the head node
     while (current != nullptr) {         // Loop until we reach the end of the list
         Node* nextNode = current->next;  // Save the pointer to the next node
         delete current;                  // Delete the current node, freeing its memory
         current = nextNode;              // Move to the next node in the list
     }
-    head = nullptr;  // Set head to nullptr to indicate the list is now empty
-    tail = nullptr;  // Set tail to nullptr as well
-    size = 0;        // Reset size to 0
+    this->head = nullptr;  // Set head to nullptr to indicate the list is now empty
+    this->tail = nullptr;  // Set tail to nullptr as well
+    this->size = 0;        // Reset size to 0
 }
 
 // push_front: Inserts an element at the beginning of the list
