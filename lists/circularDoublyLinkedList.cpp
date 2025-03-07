@@ -224,4 +224,4 @@ void CircularDoublyLinkedList::print() const {
     } while (current != head);
 
     std::cout << "\n";
-}
+};

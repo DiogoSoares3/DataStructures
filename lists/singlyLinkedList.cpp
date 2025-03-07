@@ -21,7 +21,7 @@ SinglyLinkedList::~SinglyLinkedList() {
     this->head = nullptr;  // Set head to nullptr to indicate the list is now empty
     this->tail = nullptr;  // Set tail to nullptr as well
     this->size = 0;        // Reset size to 0
-}
+};
 
 // push_front: Inserts an element at the beginning of the list
 void SinglyLinkedList::push_front(int value) {
@@ -220,4 +220,4 @@ void SinglyLinkedList::print() const {
         current = current->next;
     }
     std::cout << "\n";
-}
+};

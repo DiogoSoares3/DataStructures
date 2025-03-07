@@ -20,7 +20,7 @@ Queue::~Queue() {
     this->backNode = nullptr;   // Set head to nullptr to indicate the queue is now empty
     this->frontNode = nullptr;  // Set tail to nullptr as well
     this->size = 0;             // Reset size to 0
-}
+};
 
 // Enqueue: Adds an element to the back of the queue
 void Queue::enqueue(int value) {
@@ -79,7 +79,7 @@ void Queue::dequeue() {
 // Throws an exception if the queue is empty.
 int& Queue::front() {
     if (this->isEmpty()) {
-        throw std::out_of_range("List is empty");
+        throw std::out_of_range("Queue is empty");
     }
 
     return this->frontNode->data;
@@ -98,7 +98,7 @@ size_t Queue::getSize() const {
 // clear: Removes all elements from the list and frees memory
 void Queue::clear() {
     this->~Queue();
-}
+};
 
 // print: Traverses the queue and prints each element
 void Queue::print() const {
@@ -110,4 +110,4 @@ void Queue::print() const {
         current = current->next;
     }
     std::cout << "\n";
-}
+};
