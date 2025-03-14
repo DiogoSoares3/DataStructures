@@ -24,7 +24,7 @@ private:
     void resizeDown();
 
 public:
-    explicit HashMap(size_t size = 101) : table(size), tableSize(size), numElements(0) { }
+    explicit HashMap(size_t size = 101);
 
     ~HashMap();
 
@@ -40,9 +40,9 @@ public:
 
     void clear();
 
-    size_t getSize() const {
-        return numElements;
-    }
+    size_t getSize() const;
+
+    size_t getTableSize() const;
 
     void print() const;
 };

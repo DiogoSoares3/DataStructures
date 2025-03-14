@@ -50,6 +50,7 @@ public:
     // getSize: Returns the number of elements (key-value pairs) in the hash table.
     size_t getSize() const;
 
+    //getTableSize: Return the hash set table size 
     size_t getTableSize() const;
 
     // print: Prints the contents of the hash table for debugging purposes.
