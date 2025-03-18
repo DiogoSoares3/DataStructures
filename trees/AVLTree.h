@@ -57,7 +57,9 @@ public:
     // Prints the values of the subtree in order (used for debugging)
     void printInOrder(Node* node) const;
 
+    // Return the root node of the AVL Tree instance
     Node* getRoot() const;
 
+    // Return 0 if the tree is not balanced, return 1 if it is
     bool isBalanced(Node* node);
 };

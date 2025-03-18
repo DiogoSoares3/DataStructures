@@ -220,11 +220,13 @@ void AVLTree<T>::printInOrder(Node* node) const {
     printInOrder(node->right); // Visit right subtree
 }
 
+// Return the root node of the AVL Tree instance
 template<typename T>
 typename AVLTree<T>::Node* AVLTree<T>::getRoot() const {
     return this->root;
 }
 
+// Return 0 if the tree is not balanced, return 1 if it is
 template<typename T>
 bool AVLTree<T>::isBalanced(Node* node) {
     return (this->getBalance(node) <= 1 && this->getBalance(node) >= -1) ? true : false;
