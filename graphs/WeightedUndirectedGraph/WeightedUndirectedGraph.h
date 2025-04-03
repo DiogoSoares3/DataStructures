@@ -10,8 +10,8 @@
 
 template<typename Tp>
 class WeightedUndirectedGraph {
-private:
-    struct Edge;
+public:
+    struct Edge;  // Forward declaration
 
     struct Vertex {
         Tp label;              // Vertex label
@@ -29,12 +29,7 @@ private:
         Edge(const double& weightValue);
     };
 
-    std::vector<Vertex*> vertices;   // Vector of vertices
-    size_t numEdges;            // Total number of unique edges
-
-public:
     WeightedUndirectedGraph(const std::string&);
-
     ~WeightedUndirectedGraph();
 
     // Returns the number of vertices in the graph.
@@ -63,4 +58,8 @@ public:
     Vertex* getVertex(size_t index) const;
 
     void clear();
+
+private:
+    std::vector<Vertex*> vertices;   // Vector of vertices
+    size_t numEdges;            // Total number of unique edges
 };

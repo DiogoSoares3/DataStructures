@@ -2,6 +2,7 @@
 #include <fstream>
 #include "WeightedUndirectedGraph.h"
 #include "GraphSearch.h"
+#include "GraphCicles.h"
 
 int main() {
     // Reading the input file
@@ -71,6 +72,11 @@ int main() {
                 }
             }
         }
+
+    // Testing the Eulerian cycle
+    EulerianCycleSolver<std::string> solver(graph);
+    std::cout << "\n[Eulerian Cycle]:" << std::endl;
+    solver.printEulerianCycle();
 
     // Testing the graph clear function
     std::cout << "Clearing the graph..." <<  std::endl;

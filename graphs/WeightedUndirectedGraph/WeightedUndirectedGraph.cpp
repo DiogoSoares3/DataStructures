@@ -130,7 +130,7 @@ std::vector<typename WeightedUndirectedGraph<Tp>::Vertex*> WeightedUndirectedGra
 template<typename Tp>
 bool WeightedUndirectedGraph<Tp>::haAresta(Vertex* u, Vertex* v) const {
     for (Edge* edge : u->adj) {
-        if (edge->v == v) {
+        if (edge->v == v || edge->u == v) { // Verifying if the edge is between u and v
             return true;
         }
     }
@@ -142,7 +142,7 @@ bool WeightedUndirectedGraph<Tp>::haAresta(Vertex* u, Vertex* v) const {
 template<typename Tp>
 double WeightedUndirectedGraph<Tp>::peso(Vertex* u, Vertex* v) const {
     for (Edge* edge : u->adj) {
-        if (edge->v == v) {
+        if (edge->v == v || edge->u == v) { // Verifying if the edge is between u and v
             return edge->weight;
         }
     }
