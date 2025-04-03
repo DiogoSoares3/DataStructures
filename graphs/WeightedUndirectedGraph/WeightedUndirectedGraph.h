@@ -23,7 +23,7 @@ private:
     };
 
     struct Edge {
-        Vertex* u, *v;    // The two endpoints of the edge
+        Vertex* u, *v;  // The two endpoints of the edge
         double weight;  // Weight of the edge
 
         Edge(const double& weightValue);

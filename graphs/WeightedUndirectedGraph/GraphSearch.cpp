@@ -100,14 +100,14 @@ std::vector<size_t> DepthFirstSearch(const WeightedUndirectedGraph<Tp>& graph, s
         currentTime += 1;
         size_t u {S.top()};
         S.pop();
-        timeElapsed[u-1] = currentTime  // Converting to 0-index based
+        timeElapsed[u-1] = currentTime;  // Converting to 0-index based
 
         for (auto vertex : graph.vizinhos(graph.getVertex(u))) {
             size_t v = vertex->index - 1;  // Converting to 0-based index for array operations
 
             if (!knownVertices[v]) {
                 knownVertices[v] = true;
-                predecessorVertices[v] = u - 1  // 'u' is 1-index based, so we are converting to 1-index based
+                predecessorVertices[v] = u - 1;  // 'u' is 1-index based, so we are converting to 1-index based
                 S.push(v + 1);  // Push back as 1-indexed for consistency in getVertex calls
             }
         }
