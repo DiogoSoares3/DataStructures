@@ -57,6 +57,10 @@ public:
     // Return the Vertex pointer given a certain index
     Vertex* getVertex(size_t index) const;
 
+    std::vector<typename WeightedUndirectedGraph<Tp>::Edge*> getEdges() const;
+
+    std::vector<typename WeightedUndirectedGraph<Tp>::Vertex*> getVertices() const;
+
     void clear();
 
 private:

@@ -3,6 +3,9 @@
 #include "WeightedUndirectedGraph.h"
 #include "GraphSearch.h"
 #include "GraphCicles.h"
+#include "MinimalPaths.h"
+#include "MinimalPaths.cpp"
+#include <tuple>
 
 int main() {
     // Reading the input file
@@ -25,6 +28,7 @@ int main() {
     std::cout << "Weight of the edge between 1 and 2: " << graph.peso(graph.getVertex(1), graph.getVertex(2)) << std::endl;
     std::cout << "Weight of the edge between 2 and 3: " << graph.peso(graph.getVertex(2), graph.getVertex(3)) << std::endl;
     std::cout << "Weight of the edge between 3 and 4: " << graph.peso(graph.getVertex(3), graph.getVertex(4)) << std::endl;
+    std::cout << "Weight of the edge between 2 and 5: " << graph.peso(graph.getVertex(5), graph.getVertex(2)) << std::endl;
 
     // Testing neighbors of vertices
     std::cout << "Neighbors of vertex 1: ";
@@ -77,6 +81,17 @@ int main() {
     EulerianCycleSolver<std::string> solver(graph);
     std::cout << "\n[Eulerian Cycle]:" << std::endl;
     solver.printEulerianCycle();
+
+    // Testing the Minimal Paths
+    std::cout << "\n[Minimal Paths]" << std::endl;
+    size_t source;
+    std::cout << "\nEnter the starting vertex index for Bellman-Ford and Dijkstra: ";
+    std::cin >> source;
+    auto result = BellmanFord(graph, source);
+    printBellmanFordResult(graph, source, result);
+
+    auto result2 = Dijkstra(graph, source);
+    printDijkstraResult(graph, source, result2);
 
     // Testing the graph clear function
     std::cout << "Clearing the graph..." <<  std::endl;

@@ -6,6 +6,8 @@
 #include <fstream>
 #include <sstream>
 #include <unordered_set>
+#include <set>
+#include <algorithm>
 #include "WeightedUndirectedGraph.h"
 
 
@@ -177,4 +179,30 @@ void WeightedUndirectedGraph<Tp>::clear() {
 
     this->vertices.clear();
     this->numEdges = 0;
+}
+
+template<typename Tp>
+std::vector<typename WeightedUndirectedGraph<Tp>::Edge*> WeightedUndirectedGraph<Tp>::getEdges() const {
+    std::set<std::pair<size_t, size_t>> seen;
+    std::vector<Edge*> uniqueEdges;
+
+    for (const auto* vertex : vertices) {
+        for (Edge* edge : vertex->adj) {
+            size_t uIndex = edge->u->index;
+            size_t vIndex = edge->v->index;
+            // Cria um par ordenado para evitar duplicação
+            std::pair<size_t, size_t> edgeKey = std::minmax(uIndex, vIndex);
+            if (seen.find(edgeKey) == seen.end()) {
+                seen.insert(edgeKey);
+                uniqueEdges.push_back(edge);
+            }
+        }
+    }
+
+    return uniqueEdges;
+}
+
+template<typename Tp>
+std::vector<typename WeightedUndirectedGraph<Tp>::Vertex*> WeightedUndirectedGraph<Tp>::getVertices() const {
+    return this->vertices;
 }
