@@ -10,6 +10,9 @@
 #include <tuple>
 #include <queue>
 #include <functional>
+#include <iomanip>
+#include <limits>
+
 
 template<typename Tp>
 void printBellmanFordResult(
@@ -246,12 +249,81 @@ void printDijkstraResult(
 
 
 template<typename Tp>
-void FloydWarshall(const WeightedUndirectedGraph<Tp>& graph) {
+std::tuple<std::vector<std::vector<double>>, std::vector<std::vector<size_t>>> FloydWarshall(const WeightedUndirectedGraph<Tp>& graph) {
     size_t n = graph.qtdVertices();
-    std::vector<std::vector<double>> dist(n, std::vector<double>(n, std::numeric_limits<double>::infinity()));
-    std::vector<std::vector<size_t>> pred(n, std::vector<size_t>(n, std::numeric_limits<size_t>::max()));
+    std::vector<std::vector<double>> D(n, std::vector<double>(n, std::numeric_limits<double>::infinity()));
     
+    // Predecessor matrix Π: initialize with "null" 
+    std::vector<std::vector<size_t>> Π(n, std::vector<size_t>(n, std::numeric_limits<size_t>::max()));
+
+    // Initialize D(0) and Π(0):
+    // For each pair of vertices u, v:
+    //   If u == v, set D[u][v] = 0
+    //   Else if an edge exists between u and v, set D[u][v] = weight(u,v) and Π[u][v] = u.
+    //   Otherwise D[u][v] remains infinity and Π[u][v] remains "null".
+    for (size_t u = 0; u < n; u++) {
+        for (size_t v = 0; v < n; v++) {
+            if (u == v) {
+                D[u][v] = 0;
+            } else {
+                auto* vertexU = graph.getVertex(u + 1);
+                auto* vertexV = graph.getVertex(v + 1);
+                if (graph.haAresta(vertexU, vertexV)) {
+                    double weightUV = graph.peso(vertexU, vertexV);
+                    D[u][v] = weightUV;
+                    Π[u][v] = u;
+                }
+            }
+        }
+    }
+
+    // Floyd-Warshall iterative improvement:
+    for (size_t k = 0; k < n; k++) {
+        for (size_t u = 0; u < n; u++) {
+            for (size_t v = 0; v < n; v++) {
+                if (D[u][v] > D[u][k] + D[k][v]) {
+                    D[u][v] = D[u][k] + D[k][v];
+                    Π[u][v] = Π[k][v];
+                }
+            }
+        }
+    }
+
+    return std::make_tuple(D, Π);
 }
+
+
+// Function to print the distance matrix.
+// D is a matrix (vector of vectors) of doubles, representing the shortest path distances.
+// void printDistanceMatrix(const std::vector<std::vector<double>>& D) {
+//     std::cout << "Floyd-Warshall Distance Matrix:" << std::endl;
+//     for (const auto& row : D) {
+//         for (const auto& d : row) {
+//             if (d == std::numeric_limits<double>::infinity())
+//                 std::cout << "inf ";
+//             else
+//                 std::cout << std::fixed << std::setprecision(1) << d << " ";
+//         }
+//         std::cout << std::endl;
+//     }
+// }
+
+// Function to print the predecessor matrix.
+// PI is a matrix (vector of vectors) of size_t values, where a value of std::numeric_limits<size_t>::max()
+// is considered as "null". We output vertex indices as 1-based for clarity.
+// void printPredecessorMatrix(const std::vector<std::vector<size_t>>& PI) {
+//     std::cout << "\nFloyd-Warshall Predecessor Matrix:" << std::endl;
+//     for (const auto& row : PI) {
+//         for (const auto& p : row) {
+//             if (p == std::numeric_limits<size_t>::max())
+//                 std::cout << "null ";
+//             else
+//                 // Output as 1-based index
+//                 std::cout << (p + 1) << " ";
+//         }
+//         std::cout << std::endl;
+//     }
+// }
 
 
 // template std::tuple<bool, std::vector<double>, std::vector<size_t>> BellmanFord<std::string>(
