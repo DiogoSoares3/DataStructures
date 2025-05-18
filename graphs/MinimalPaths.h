@@ -47,3 +47,5 @@ inline void printPredecessorMatrix(const std::vector<std::vector<size_t>>& PI) {
         std::cout << std::endl;
     }
 }
+
+#include "MinimalPaths.cpp"

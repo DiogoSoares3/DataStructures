@@ -6,3 +6,5 @@ std::vector<size_t> BreadthFirstSearch(const WeightedUndirectedGraph<Tp>& graph,
 
 template<typename Tp>
 std::vector<size_t> DepthFirstSearch(const WeightedUndirectedGraph<Tp>& graph, size_t startVertexIndex);
+
+#include "GraphSearch.cpp"

@@ -4,7 +4,7 @@
 #include <limits>
 #include "WeightedUndirectedGraph.h"
 #include "MinimalPaths.h"
-#include "MinimalPaths.cpp"
+// #include "MinimalPaths.cpp"
 
 
 int main(int argc, char* argv[]) {

@@ -24,3 +24,5 @@ private:
 
     typename WeightedUndirectedGraph<Tp>::Vertex* findConnectedVertex() const;
 };
+
+#include "GraphCicles.cpp"

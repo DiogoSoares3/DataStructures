@@ -67,3 +67,5 @@ private:
     std::vector<Vertex*> vertices;   // Vector of vertices
     size_t numEdges;            // Total number of unique edges
 };
+
+#include "WeightedUndirectedGraph.cpp"
